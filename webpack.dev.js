@@ -6,6 +6,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
+  devServer: {
+    port: 8080,
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
+    // open: true,
+    hot: true,
+  },
+  resolve: {
+    extensions: ['.ts', '.js', 'scss'],
+  },
   entry: './src/index.ts',
   module: {
     rules: [
@@ -43,9 +54,6 @@ module.exports = {
         // include: [path.resolve(__dirname, 'src')],
       },
     ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js', 'scss'],
   },
   output: {
     filename: 'bundle.[contenthash].js',
